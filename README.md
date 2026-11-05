@@ -1,1 +1,2 @@
-"# fastapi-mini-library" 
+# This is a mini library to practice working on CRUD
+# with FastAPI
