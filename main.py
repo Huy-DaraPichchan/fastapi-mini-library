@@ -8,14 +8,6 @@ from schema import BookResponse, BookCreate
 
 app = FastAPI()
 
-# Automatically creates tables in SQLite on startup if they don't exist
-# Base.metadata.create_all(bind=engine)
-
-
-@app.get("/")
-def health():
-    return {"message": "Server is running!"}
-
 
 @app.get("/books", response_model=list[BookResponse])
 def get_books(
