@@ -4,7 +4,7 @@ from sqlalchemy import or_
 
 from database import get_db
 from models import Book
-from schema import BookResponse, BookCreate
+from schema import BookResponse, BookCreate, BookUpdate
 
 app = FastAPI()
 
@@ -76,7 +76,7 @@ def delete_book(bid: int, db: Session = Depends(get_db)):
     
     
 @app.put("/books/{bid}", response_model=BookResponse)
-def update_book(bid: int, book: BookCreate, db: Session = Depends(get_db)):
+def update_book(bid: int, book: BookUpdate, db: Session = Depends(get_db)):
     db_book = db.query(Book).filter(Book.id == bid).first()
     
     if not db_book:
@@ -88,6 +88,7 @@ def update_book(bid: int, book: BookCreate, db: Session = Depends(get_db)):
     db_book.author = book.author
     db_book.year = book.year
     db_book.available = book.available
+    db_book.rating = book.rating
     
     db.commit()
     db.refresh(db_book)
