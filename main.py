@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 
-from database import engine, Base, get_db
+from database import get_db
 from models import Book
 from schema import BookResponse, BookCreate
 
